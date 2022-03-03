@@ -12,6 +12,10 @@ class RestaurantCell: UITableViewCell {
 
     @IBOutlet weak var restaurantImage: UIImageView!
     @IBOutlet weak var restaurantLabel: UILabel!
+    @IBOutlet weak var typeLabel: UILabel!
+    @IBOutlet weak var ratingsImage: UIImageView!
+    @IBOutlet weak var totalRatings: UILabel!
+    @IBOutlet weak var phoneLabel: UILabel!
     
     
     

@@ -47,6 +47,7 @@ class RestaurantsViewController: UIViewController, UITableViewDelegate, UITableV
         }
     }
     
+    
     // Protocol stubs
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return restaurantsArray.count
@@ -57,12 +58,29 @@ class RestaurantsViewController: UIViewController, UITableViewDelegate, UITableV
         let cell = tableView.dequeueReusableCell(withIdentifier: "RestaurantCell") as! RestaurantCell
         let restaurant = restaurantsArray[indexPath.row]
         
+        // Displays restaurant's name
         cell.restaurantLabel.text = restaurant["name"] as? String ?? ""
         
+        // Displays type of food sold at restaurant
+        let kind = restaurant["categories"] as? [[String:String]] ?? []
+        cell.typeLabel.text = kind[0]["title"] as String?
+        
+        // Displays restaurant's telephone number
+        cell.phoneLabel.text = restaurant["display_phone"] as? String
+        
+        // Displays number of reviews restaurant has
+        let count = restaurant["review_count"] as? Int ?? 0
+        cell.totalRatings.text = "\(count)"
+        
+        // Displays photo of restaurant
         if let imageUrlString = restaurant["image_url"] as? String {
             let imageURL = URL(string: imageUrlString)
             cell.restaurantImage.af.setImage(withURL: imageURL!)
         }
+        
+        // Displays rating
+        let rating = restaurant["rating"] as? Double
+      
         
         return cell
     }
